@@ -24,13 +24,13 @@ namespace AIO.Combat.Warrior
         }
 
         public List<RotationStep> Rotation => new List<RotationStep> {
-            new RotationStep(new RotationBuff("Vigilance"), 1f,(s,t) => !Me.IsMounted && !t.HaveBuff("Vigilance"), RotationCombatUtil.FindHeal),
-            new RotationStep(new RotationBuff("Battle Shout"), 2f, (s,t) => !Me.IsMounted && !t.HaveBuff("Greater Blessing of Might"), RotationCombatUtil.FindMe),
-            new RotationStep(new RotationBuff("Defensive Stance"), 3f, (s,t) => !Me.IsMounted && Spec == Spec.Warrior_GroupProtection, RotationCombatUtil.FindMe),
-            new RotationStep(new RotationBuff("Battle Stance"), 4f, (s,t) => !Me.IsMounted && Spec == Spec.Warrior_SoloArms, RotationCombatUtil.FindMe),
-            new RotationStep(new RotationBuff("Berserker Stance"), 4f, (s,t) => !Me.IsMounted && (Spec == Spec.Warrior_SoloFury || Spec == Spec.Warrior_GroupFury), RotationCombatUtil.FindMe),
+            new RotationStep(new RotationBuff(SpellIds.Warrior.Vigilance), 1f,(s,t) => !Me.IsMounted && !t.HaveBuff(SpellIds.Warrior.Vigilance), RotationCombatUtil.FindHeal),
+            new RotationStep(new RotationBuff(SpellIds.Warrior.BattleShout), 2f, (s,t) => !Me.IsMounted && !t.HaveBuff(SpellIds.Paladin.GreaterBlessingOfMight), RotationCombatUtil.FindMe),
+            new RotationStep(new RotationBuff(SpellIds.Warrior.DefensiveStance), 3f, (s,t) => !Me.IsMounted && Spec == Spec.Warrior_GroupProtection, RotationCombatUtil.FindMe),
+            new RotationStep(new RotationBuff(SpellIds.Warrior.BattleStance), 4f, (s,t) => !Me.IsMounted && Spec == Spec.Warrior_SoloArms, RotationCombatUtil.FindMe),
+            new RotationStep(new RotationBuff(SpellIds.Warrior.BerserkerStance), 4f, (s,t) => !Me.IsMounted && (Spec == Spec.Warrior_SoloFury || Spec == Spec.Warrior_GroupFury), RotationCombatUtil.FindMe),
             // Fallback for fury
-            new RotationStep(new RotationBuff("Battle Stance"), 4f, (s,t) => !Me.IsMounted && (Spec == Spec.Warrior_SoloFury|| Spec == Spec.Warrior_GroupFury) && !KnowBerserkerStance, RotationCombatUtil.FindMe),
+            new RotationStep(new RotationBuff(SpellIds.Warrior.BattleStance), 4f, (s,t) => !Me.IsMounted && (Spec == Spec.Warrior_SoloFury|| Spec == Spec.Warrior_GroupFury) && !KnowBerserkerStance, RotationCombatUtil.FindMe),
         };
 
         public void Initialize() { }

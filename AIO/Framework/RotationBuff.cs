@@ -17,6 +17,13 @@ namespace AIO.Framework
             MinimumRefreshTimeLeft = minimumRefreshTimeLeft;
         }
 
+        public RotationBuff(int spellId, int minimumStacks = 0, int minimumRefreshTimeLeft = 0) :
+            base(spellId)
+        {
+            MinimumStacks = minimumStacks;
+            MinimumRefreshTimeLeft = minimumRefreshTimeLeft;
+        }
+
         public override (bool, bool) Should(WoWUnit target)
         {
             var buffs = BuffManager.GetAuras(target.GetBaseAddress, Spell.Ids);

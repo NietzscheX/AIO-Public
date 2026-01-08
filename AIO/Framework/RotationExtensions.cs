@@ -53,6 +53,11 @@ namespace AIO.Framework
                 })
             ) == creatureType;
 
+        public static bool IsCreatureType(this WoWUnit unit, wManager.Wow.Enums.CreatureType creatureType)
+        {
+            return unit.CreatureType == creatureType;
+        }
+
         public static bool HasMana(this WoWUnit unit) => unit is WoWPlayer wUnit && wUnit.PowerType == PowerType.Mana
                                                          || !(unit is WoWPlayer) && unit.MaxMana > 1;
 

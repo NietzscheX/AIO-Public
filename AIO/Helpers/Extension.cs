@@ -82,29 +82,29 @@ static class Extension
         return false;
     }
 
+    private static bool HasDebuffType(string[] debuffTypes)
+    {
+        string luaCheck = $@"
+            for i=1,25 do 
+                local _, _, _, _, d = UnitDebuff('player', i);
+                if d then
+                    {string.Join(" or ", debuffTypes.Select(t => $"d == '{t}'"))} then
+                        return true
+                    end
+                end
+            end
+            return false";
+        return Lua.LuaDoString<bool>(luaCheck);
+    }
+
     public static bool HasPoisonDebuff()
     {
-        bool hasPoisonDebuff = Lua.LuaDoString<bool>
-            (@"for i=1,25 do 
-	            local _, _, _, _, d  = UnitDebuff('player',i);
-	            if d == 'Poison' then
-                return true
-                end
-            end");
-        return hasPoisonDebuff;
+        return HasDebuffType(new[] { "Poison", "毒药" });
     }
-    
 
     public static bool HasDiseaseDebuff()
     {
-        bool hasDiseaseDebuff = Lua.LuaDoString<bool>
-            (@"for i=1,25 do 
-	            local _, _, _, _, d  = UnitDebuff('player',i);
-	            if d == 'Disease' then
-                return true
-                end
-            end");
-        return hasDiseaseDebuff;
+        return HasDebuffType(new[] { "Disease", "疾病" });
     }
 
     //Get Item Amount
@@ -207,6 +207,18 @@ static class Extension
         (from item in Bag.GetBagItem() where itemName.Equals(item.Name) select item.Entry).FirstOrDefault();
 
     public static bool HaveRangedWeaponEquipped => Me.GetEquipedItemBySlot(wManager.Wow.Enums.InventorySlot.INVSLOT_RANGED) != 0;
+
+    public static bool HaveBuff(this WoWUnit unit, int spellId)
+    {
+        string spellName = Lua.LuaDoString<string>($"local name = GetSpellInfo({spellId}); return name;");
+        return unit.HaveBuff(spellName);
+    }
+
+    public static bool KnowSpell(int spellId)
+    {
+        string spellName = Lua.LuaDoString<string>($"local name = GetSpellInfo({spellId}); return name;");
+        return SpellManager.KnowSpell(spellName);
+    }
 }
 
 internal class FuncComp<T, TN> : IComparer<T> where TN : IComparable<TN>

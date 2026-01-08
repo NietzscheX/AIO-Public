@@ -12,6 +12,12 @@ namespace AIO.Framework
         {
             Spell = new Spell(name);
         }
+
+        public RotationSpell(int spellId)
+        {
+            string name = wManager.Wow.Helpers.Lua.LuaDoString<string>($"local name = GetSpellInfo({spellId}); return name;");
+            Spell = new Spell(name);
+        }
         
         public RotationSpell(Spell spell)
         {
