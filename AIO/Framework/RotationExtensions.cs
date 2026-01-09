@@ -53,9 +53,35 @@ namespace AIO.Framework
                 })
             ) == creatureType;
 
-        public static bool IsCreatureType(this WoWUnit unit, wManager.Wow.Enums.CreatureType creatureType)
+        public static bool IsCreatureType(this WoWUnit unit, AIO.Enums.CreatureType creatureType)
         {
-            return unit.CreatureType == creatureType;
+            string globalStringKey = null;
+            switch (creatureType)
+            {
+                case AIO.Enums.CreatureType.Humanoid: globalStringKey = "CREATURE_TYPE_HUMANOID"; break;
+                case AIO.Enums.CreatureType.Undead: globalStringKey = "CREATURE_TYPE_UNDEAD"; break;
+                case AIO.Enums.CreatureType.Beast: globalStringKey = "CREATURE_TYPE_BEAST"; break;
+                case AIO.Enums.CreatureType.Demon: globalStringKey = "CREATURE_TYPE_DEMON"; break;
+                case AIO.Enums.CreatureType.Dragonkin: globalStringKey = "CREATURE_TYPE_DRAGONKIN"; break;
+                case AIO.Enums.CreatureType.Elemental: globalStringKey = "CREATURE_TYPE_ELEMENTAL"; break;
+                case AIO.Enums.CreatureType.Giant: globalStringKey = "CREATURE_TYPE_GIANT"; break;
+                case AIO.Enums.CreatureType.Mechanical: globalStringKey = "CREATURE_TYPE_MECHANICAL"; break;
+                case AIO.Enums.CreatureType.Critter: globalStringKey = "CREATURE_TYPE_CRITTER"; break;
+                default: return false;
+            }
+
+            string targetType = CreatureTypeCache.GetOrAdd(unit.Entry, k =>
+                RotationCombatUtil.ExecuteActionOnUnit(unit, (luaUnitId) =>
+                {
+                    var luaString = $@"return UnitCreatureType(""{luaUnitId}"")";
+                    return Lua.LuaDoString<string>(luaString);
+                })
+            );
+
+            if (string.IsNullOrEmpty(targetType)) return false;
+
+            string localizedType = Lua.LuaDoString<string>($"return _G['{globalStringKey}']");
+            return targetType == localizedType;
         }
 
         public static bool HasMana(this WoWUnit unit) => unit is WoWPlayer wUnit && wUnit.PowerType == PowerType.Mana

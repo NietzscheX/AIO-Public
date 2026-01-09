@@ -45,7 +45,7 @@ namespace AIO.Combat.Warrior
             new RotationStep(new RotationSpell(SpellIds.Warrior.Rend), 8.5f, (s,t) => Settings.Current.SoloArmsSpreadRend, p => _enemiesAroundWithoutMyRend.FirstOrDefault()),
 
             // Utility
-            new RotationStep(new RotationSpell(SpellIds.Warrior.Hamstring), 9f, (s,t) => !t.CHaveBuff(SpellIds.Warrior.Hamstring) && t.CHealthPercent() < 40 && t.IsCreatureType(wManager.Wow.Enums.CreatureType.Humanoid) && !BossList.MyTargetIsBoss && Settings.Current.Hamstring, RotationCombatUtil.BotTargetFast),
+            new RotationStep(new RotationSpell(SpellIds.Warrior.Hamstring), 9f, (s,t) => !t.CHaveBuff(SpellIds.Warrior.Hamstring) && t.CHealthPercent() < 40 && t.IsCreatureType(AIO.Enums.CreatureType.Humanoid) && !BossList.MyTargetIsBoss && Settings.Current.Hamstring, RotationCombatUtil.BotTargetFast),
             new RotationStep(new RotationSpell(SpellIds.Warrior.EnragedRegeneration), 10f, (s,t) => Me.CHealthPercent() < Settings.Current.SoloArmsEnragedRegen, RotationCombatUtil.BotTargetFast),
             new RotationStep(new RotationSpell(SpellIds.Warrior.BerserkerRage), 11f, (s,t) => Me.CHaveBuff("Fear"), RotationCombatUtil.BotTargetFast),
             new RotationStep(new RotationSpell(SpellIds.Warrior.IntimidatingShout), 13f, (s,t) => Settings.Current.SoloArmsIntimShout && _nbEnemiesAroundMeCasting > 0, RotationCombatUtil.BotTargetFast),

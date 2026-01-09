@@ -24,7 +24,7 @@ namespace AIO.Combat.Mage
             // Make sure no enemies in 30 yard casting range are polymorphed right now
             && RotationFramework.Enemies.Count(o => o.GetDistance <= 30 && o.HaveBuff(SpellIds.Mage.Polymorph)) < 1
             // Only polymorph a valid target
-            && (t.IsCreatureType(wManager.Wow.Enums.CreatureType.Humanoid) || t.IsCreatureType(wManager.Wow.Enums.CreatureType.Beast) || t.IsCreatureType(wManager.Wow.Enums.CreatureType.Critter)),
+            && (t.IsCreatureType(AIO.Enums.CreatureType.Humanoid) || t.IsCreatureType(AIO.Enums.CreatureType.Beast) || t.IsCreatureType(AIO.Enums.CreatureType.Critter)),
                 RotationCombatUtil.FindEnemyTargetingMe),
             new RotationStep(new RotationSpell(SpellIds.Mage.IcyVeins), 3f, (s,t) => Me.BuffStack(SpellIds.Mage.ArcaneBlastBuff) >= 1 && BossList.MyTargetIsBoss, RotationCombatUtil.BotTarget),
             new RotationStep(new RotationSpell(SpellIds.Mage.ArcanePower), 4f, (s,t) => Me.BuffStack(SpellIds.Mage.ArcaneBlastBuff) >= 1 && BossList.MyTargetIsBoss, RotationCombatUtil.BotTarget),

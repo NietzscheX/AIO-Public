@@ -120,7 +120,7 @@ namespace AIO.Combat.Priest
             // Cast Mind Soothe if we're too close to an enemy and could potentially pull him
             new RotationStep(new RotationSpell(SpellIds.Priest.MindSoothe), 2.1f,
                 (action, enemy) => !enemy.InCombat && !enemy.IsMyTarget && !enemy.PlayerControlled &&
-                                   enemy.IsAttackable && enemy.IsCreatureType(wManager.Wow.Enums.CreatureType.Humanoid) &&
+                                   enemy.IsAttackable && enemy.IsCreatureType(AIO.Enums.CreatureType.Humanoid) &&
                                    enemy.BuffTimeLeft(SpellIds.Priest.MindSoothe) < 1000 && enemy.GetDistance - enemy.AggroDistance <
                                    Settings.Current.GroupHolyMindSootheDistance,
                 action => !_isSpirit && _shouldCastOffTank && Me.CManaPercentage() > 50 &&
@@ -135,7 +135,7 @@ namespace AIO.Combat.Priest
 
             // Cast Shackle Undead to freeze undead enemies targeting us but out of combat reach to get some time
             new RotationStep(new RotationSpell(SpellIds.Priest.ShackleUndead), 2.3f,
-                (action, enemy) => enemy.IsCreatureType(wManager.Wow.Enums.CreatureType.Undead) && enemy.GetDistance > enemy.CombatReach,
+                (action, enemy) => enemy.IsCreatureType(AIO.Enums.CreatureType.Undead) && enemy.GetDistance > enemy.CombatReach,
                 action => !_isSpirit && Me.CManaPercentage() > 50 && _shouldCastOffTank &&
                           Settings.Current.GroupHolyShackleUndead &&
                           CanShackleNew(),

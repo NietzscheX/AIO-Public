@@ -57,11 +57,11 @@ namespace AIO.Combat.Druid
 
             // finisher
             new RotationStep(new RotationSpell(SpellIds.Druid.SavageRoar), 22f, (s,t) => !Me.HaveBuff(SpellIds.Druid.SavageRoar) && Me.ComboPoint >= Settings.Current.GroupFeralFinisherComboPoints, RotationCombatUtil.BotTargetFast),
-            new RotationStep(new RotationSpell(SpellIds.Druid.Rip), 23f, (s,t) => Me.ComboPoint >= Settings.Current.GroupFeralFinisherComboPoints && t.HealthPercent > 50 && !t.HaveMyBuff(SpellIds.Druid.Rip) && !t.IsCreatureType(wManager.Wow.Enums.CreatureType.Elemental),  RotationCombatUtil.BotTargetFast),
+            new RotationStep(new RotationSpell(SpellIds.Druid.Rip), 23f, (s,t) => Me.ComboPoint >= Settings.Current.GroupFeralFinisherComboPoints && t.HealthPercent > 50 && !t.HaveMyBuff(SpellIds.Druid.Rip) && !t.IsCreatureType(AIO.Enums.CreatureType.Elemental),  RotationCombatUtil.BotTargetFast),
             new RotationStep(new RotationSpell(SpellIds.Druid.FerociousBite), 24f, (s, t) => Me.ComboPoint >= Settings.Current.GroupFeralFinisherComboPoints, RotationCombatUtil.BotTargetFast),
 
             // combo points
-            new RotationStep(new RotationSpell(SpellIds.Druid.Rake), 27f, (s, t) => !t.HaveBuff(SpellIds.Druid.Rake) && !t.IsCreatureType(wManager.Wow.Enums.CreatureType.Elemental), RotationCombatUtil.BotTargetFast),
+            new RotationStep(new RotationSpell(SpellIds.Druid.Rake), 27f, (s, t) => !t.HaveBuff(SpellIds.Druid.Rake) && !t.IsCreatureType(AIO.Enums.CreatureType.Elemental), RotationCombatUtil.BotTargetFast),
             new RotationStep(new RotationSpell(SpellIds.Druid.Shred), 29f, (s, t) => !t.IsFacing(Me.Position, 4), RotationCombatUtil.BotTargetFast),
             new RotationStep(new RotationSpell(SpellIds.Druid.MangleCat), 30f, (s, t) => (t.IsFacing(Me.Position, 3) || !t.HaveBuff(SpellIds.Druid.MangleCat)) && !Me.HaveBuff(SpellIds.Druid.Prowl), RotationCombatUtil.BotTargetFast),
             new RotationStep(new RotationSpell(SpellIds.Druid.Claw), 31f,(s,t)  => t.IsFacing(Me.Position, 3) && !Me.HaveBuff(SpellIds.Druid.Prowl), RotationCombatUtil.BotTargetFast)
