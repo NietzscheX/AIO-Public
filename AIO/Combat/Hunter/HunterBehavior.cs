@@ -40,7 +40,7 @@ namespace AIO.Combat.Hunter
             Addons.Add(new Racials());
             Addons.Add(new OOCBuffs());
             Addons.Add(new CombatBuffs());
-            Addons.Add(new PetAutoTarget(SpellManager.GetSpellInfo(SpellIds.Hunter.PetGrowl)));
+            Addons.Add(new PetAutoTarget(SpellManager.GetSpellInfo(SpellIds.Hunter.PetGrowl).Name));
             if (Settings.Current.Backpaddle)
             {
                 Addons.Add(new AutoBackpedal(

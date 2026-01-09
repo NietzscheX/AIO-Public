@@ -214,6 +214,12 @@ static class Extension
         return unit.HaveBuff(spellName);
     }
 
+    public static bool HaveMyBuff(this WoWUnit unit, int spellId)
+    {
+        string spellName = Lua.LuaDoString<string>($"local name = GetSpellInfo({spellId}); return name;");
+        return unit.HaveMyBuff(spellName);
+    }
+
     public static bool KnowSpell(int spellId)
     {
         string spellName = Lua.LuaDoString<string>($"local name = GetSpellInfo({spellId}); return name;");
