@@ -14,7 +14,7 @@ namespace AIO.Combat.Hunter
         public bool RunInCombat => false;
 
         public List<RotationStep> Rotation => new List<RotationStep> {
-            new RotationStep(new RotationBuff("Aspect of the Pack"), 2f, (s, t) =>
+            new RotationStep(new RotationBuff(SpellIds.Hunter.AspectOfThePack), 2f, (s, t) =>
                 !Me.IsMounted
                 && Settings.Current.UseAspecofthePack
                 && !Me.InCombat

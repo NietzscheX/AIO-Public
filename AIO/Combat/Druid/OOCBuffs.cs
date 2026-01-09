@@ -11,10 +11,10 @@ namespace AIO.Combat.Druid
         public bool RunInCombat => false;
 
         public List<RotationStep> Rotation => new List<RotationStep> {
-            new RotationStep(new RotationBuff("Mark of the Wild"), 1f, (s,t) => !Me.IsMounted && !t.HaveBuff("Gift of the Wild") && !t.HaveBuff("Stamina") && !t.HaveBuff("Armor") && !t.HaveBuff("Agility") && !t.HaveBuff("Strength") && !t.HaveBuff("Spirit"), RotationCombatUtil.FindPartyMember),
-            new RotationStep(new RotationBuff("Mark of the Wild"), 2f, (s,t) => !Me.IsMounted && !t.HaveBuff("Gift of the Wild") && !t.HaveBuff("Stamina") && !t.HaveBuff("Armor") && !t.HaveBuff("Agility") && !t.HaveBuff("Strength") && !t.HaveBuff("Spirit"), RotationCombatUtil.FindMe),
-            new RotationStep(new RotationBuff("Thorns"), 3f,(s,t) => !Me.IsMounted && !t.HaveBuff("Thorns"), RotationCombatUtil.FindTank),
-            new RotationStep(new RotationBuff("Thorns"), 4f, (s,t) => !Me.IsMounted, RotationCombatUtil.FindMe),
+            new RotationStep(new RotationBuff(SpellIds.Druid.MarkOfTheWild), 1f, (s,t) => !Me.IsMounted && !t.HaveBuff(SpellIds.Druid.GiftOfTheWild) && !t.HaveBuff("Stamina") && !t.HaveBuff("Armor") && !t.HaveBuff("Agility") && !t.HaveBuff("Strength") && !t.HaveBuff("Spirit"), RotationCombatUtil.FindPartyMember),
+            new RotationStep(new RotationBuff(SpellIds.Druid.MarkOfTheWild), 2f, (s,t) => !Me.IsMounted && !t.HaveBuff(SpellIds.Druid.GiftOfTheWild) && !t.HaveBuff("Stamina") && !t.HaveBuff("Armor") && !t.HaveBuff("Agility") && !t.HaveBuff("Strength") && !t.HaveBuff("Spirit"), RotationCombatUtil.FindMe),
+            new RotationStep(new RotationBuff(SpellIds.Druid.Thorns), 3f,(s,t) => !Me.IsMounted && !t.HaveBuff(SpellIds.Druid.Thorns), RotationCombatUtil.FindTank),
+            new RotationStep(new RotationBuff(SpellIds.Druid.Thorns), 4f, (s,t) => !Me.IsMounted, RotationCombatUtil.FindMe),
         };
 
         public void Initialize() { }

@@ -22,27 +22,27 @@ namespace AIO.Combat.Priest
 
         protected override List<RotationStep> Rotation => new List<RotationStep> {
             new RotationStep(new DebugSpell("Pre-Calculations"), 0.0f,(action, unit) => DoPreCalculations(), RotationCombatUtil.FindMe, checkRange : false, forceCast : true, ignoreGCD : true),
-            new RotationStep(new RotationSpell("Auto Attack"), 1f, (s,t) => !Me.IsCast && !RotationCombatUtil.IsAutoAttacking(), RotationCombatUtil.BotTarget),
-            new RotationStep(new RotationSpell("Power Word: Shield"), 2f, (action,tank)  => !tank.CHaveBuff("Power Word: Shield") && !tank.CHaveBuff("Weakened Soul") && tank.InCombat, RotationCombatUtil.FindTank, checkLoS: true),
-            new RotationStep(new RotationSpell("Power Word: Shield"), 2.1f, (action,me)  => !me.CHaveBuff("Power Word: Shield") && !me.CHaveBuff("Weakened Soul") && me.CHealthPercent() < 100, RotationCombatUtil.FindMe, checkLoS: true),
-            new RotationStep(new RotationSpell("Power Word: Shield"), 2.2f, (s,t) => !t.CHaveBuff("Power Word: Shield") && !t.CHaveBuff("Weakened Soul") && t.CHealthPercent() <= 80, RotationCombatUtil.FindPartyMember, checkLoS: true),
+            new RotationStep(new RotationSpell(SpellIds.Priest.AutoAttack), 1f, (s,t) => !Me.IsCast && !RotationCombatUtil.IsAutoAttacking(), RotationCombatUtil.BotTarget),
+            new RotationStep(new RotationSpell(SpellIds.Priest.PowerWordShield), 2f, (action,tank)  => !tank.CHaveBuff(SpellIds.Priest.PowerWordShield) && !tank.CHaveBuff(SpellIds.Priest.WeakenedSoul) && tank.InCombat, RotationCombatUtil.FindTank, checkLoS: true),
+            new RotationStep(new RotationSpell(SpellIds.Priest.PowerWordShield), 2.1f, (action,me)  => !me.CHaveBuff(SpellIds.Priest.PowerWordShield) && !me.CHaveBuff(SpellIds.Priest.WeakenedSoul) && me.CHealthPercent() < 100, RotationCombatUtil.FindMe, checkLoS: true),
+            new RotationStep(new RotationSpell(SpellIds.Priest.PowerWordShield), 2.2f, (s,t) => !t.CHaveBuff(SpellIds.Priest.PowerWordShield) && !t.CHaveBuff(SpellIds.Priest.WeakenedSoul) && t.CHealthPercent() <= 80, RotationCombatUtil.FindPartyMember, checkLoS: true),
             //Heal Over Time
-            new RotationStep(new RotationSpell("Renew"), 3f, (action,tank)  => !tank.CHaveMyBuff("Renew") && tank.CHealthPercent() <= 90, RotationCombatUtil.FindTank, checkLoS: true),
-            new RotationStep(new RotationSpell("Renew"), 3.1f, (action,me)  => !me.CHaveMyBuff("Renew") && me.CHealthPercent() <= 90, RotationCombatUtil.FindMe, checkLoS: true),
-            new RotationStep(new RotationSpell("Renew"), 3.2f, (s,t) => !t.CHaveMyBuff("Renew") && t.CHealthPercent() <= 90, RotationCombatUtil.FindPartyMember, checkLoS: true),
+            new RotationStep(new RotationSpell(SpellIds.Priest.Renew), 3f, (action,tank)  => !tank.CHaveMyBuff(SpellIds.Priest.Renew) && tank.CHealthPercent() <= 90, RotationCombatUtil.FindTank, checkLoS: true),
+            new RotationStep(new RotationSpell(SpellIds.Priest.Renew), 3.1f, (action,me)  => !me.CHaveMyBuff(SpellIds.Priest.Renew) && me.CHealthPercent() <= 90, RotationCombatUtil.FindMe, checkLoS: true),
+            new RotationStep(new RotationSpell(SpellIds.Priest.Renew), 3.2f, (s,t) => !t.CHaveMyBuff(SpellIds.Priest.Renew) && t.CHealthPercent() <= 90, RotationCombatUtil.FindPartyMember, checkLoS: true),
             //Prayer of Mending
-            new RotationStep(new RotationSpell("Prayer of Mending"), 3.5f, (action,tank) => 
-                tank.CHealthPercent() <= 80 && tank.CHaveMyBuff("Prayer of Mending"), RotationCombatUtil.FindTank, checkLoS: true),
+            new RotationStep(new RotationSpell(SpellIds.Priest.PrayerOfMending), 3.5f, (action,tank) => 
+                tank.CHealthPercent() <= 80 && tank.CHaveMyBuff(SpellIds.Priest.PrayerOfMending), RotationCombatUtil.FindTank, checkLoS: true),
             //Oh Shit Heals
-            new RotationStep(new RotationSpell("Inner Focus"), 3.5f, (s, t) => _hurtPartyMembers.ContainsAtLeast(p=> p.CHealthPercent() <= 60, 1),RotationCombatUtil.FindMe, checkLoS: false), 
-            new RotationStep(new RotationSpell("Divine Hymn"), 3.6f, (s,t) => Me.CHaveBuff("Inner Focus") && _hurtPartyMembers.ContainsAtLeast(p=> p.CHealthPercent() <= 60, 2), RotationCombatUtil.FindMe, checkLoS: false),
-            new RotationStep(new RotationSpell("Penance"), 4f, (action, tank)  => tank.CHealthPercent() <= 60, RotationCombatUtil.FindTank, checkLoS: true),
-            new RotationStep(new RotationSpell("Penance"), 4.1f, (s, t)  => t.CHealthPercent() <= 60, FindLowestPartyMember, checkLoS: true),            
+            new RotationStep(new RotationSpell(SpellIds.Priest.InnerFocus), 3.5f, (s, t) => _hurtPartyMembers.ContainsAtLeast(p=> p.CHealthPercent() <= 60, 1),RotationCombatUtil.FindMe, checkLoS: false), 
+            new RotationStep(new RotationSpell(SpellIds.Priest.DivineHymn), 3.6f, (s,t) => Me.CHaveBuff(SpellIds.Priest.InnerFocus) && _hurtPartyMembers.ContainsAtLeast(p=> p.CHealthPercent() <= 60, 2), RotationCombatUtil.FindMe, checkLoS: false),
+            new RotationStep(new RotationSpell(SpellIds.Priest.Penance), 4f, (action, tank)  => tank.CHealthPercent() <= 60, RotationCombatUtil.FindTank, checkLoS: true),
+            new RotationStep(new RotationSpell(SpellIds.Priest.Penance), 4.1f, (s, t)  => t.CHealthPercent() <= 60, FindLowestPartyMember, checkLoS: true),            
             //Heals
-            new RotationStep(new RotationSpell("Binding Heal"), 5f, (action, tank)  => tank.CHealthPercent() <= 80 && Me.CHealthPercent() <= 90, RotationCombatUtil.FindTank, checkLoS: true),
-            new RotationStep(new RotationSpell("Binding Heal"), 5.1f, (s, t)  => t.CHealthPercent() <= 80 && Me.CHealthPercent() <= 90, RotationCombatUtil.FindPartyMember, checkLoS: true),
-            new RotationStep(new RotationSpell("Flash Heal"), 6f, (action, tank)  => tank.CHealthPercent() <= 80, RotationCombatUtil.FindTank, checkLoS: true),
-            new RotationStep(new RotationSpell("Flash Heal"), 6.1f, (s, t)  => t.CHealthPercent() <= 80, RotationCombatUtil.FindPartyMember, checkLoS: true),
+            new RotationStep(new RotationSpell(SpellIds.Priest.BindingHeal), 5f, (action, tank)  => tank.CHealthPercent() <= 80 && Me.CHealthPercent() <= 90, RotationCombatUtil.FindTank, checkLoS: true),
+            new RotationStep(new RotationSpell(SpellIds.Priest.BindingHeal), 5.1f, (s, t)  => t.CHealthPercent() <= 80 && Me.CHealthPercent() <= 90, RotationCombatUtil.FindPartyMember, checkLoS: true),
+            new RotationStep(new RotationSpell(SpellIds.Priest.FlashHeal), 6f, (action, tank)  => tank.CHealthPercent() <= 80, RotationCombatUtil.FindTank, checkLoS: true),
+            new RotationStep(new RotationSpell(SpellIds.Priest.FlashHeal), 6.1f, (s, t)  => t.CHealthPercent() <= 80, RotationCombatUtil.FindPartyMember, checkLoS: true),
 
         };
 

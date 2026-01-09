@@ -13,11 +13,11 @@ namespace AIO.Combat.DeathKnight
         public bool RunInCombat => true;
 
         public List<RotationStep> Rotation => new List<RotationStep> {
-            new RotationStep(new RotationBuff("Blood Presence"), 1f, (s, t) => Settings.Current.Presence == "BloodPresence", RotationCombatUtil.FindMe),
-            new RotationStep(new RotationBuff("Frost Presence"), 2f, (s, t) => Settings.Current.Presence == "FrostPresence", RotationCombatUtil.FindMe),
-            new RotationStep(new RotationBuff("Unholy Presence"), 3f, (s, t) => Settings.Current.Presence == "UnholyPresence", RotationCombatUtil.FindMe),
-            new RotationStep(new RotationBuff("Horn of Winter"), 4f, (s,t) => !Me.IsMounted, RotationCombatUtil.FindMe),
-            new RotationStep(new RotationBuff("Bone Shield"), 5f, (s,t) => !Me.IsMounted, RotationCombatUtil.FindMe)
+            new RotationStep(new RotationBuff(SpellIds.DeathKnight.BloodPresence), 1f, (s, t) => Settings.Current.Presence == "BloodPresence", RotationCombatUtil.FindMe),
+            new RotationStep(new RotationBuff(SpellIds.DeathKnight.FrostPresence), 2f, (s, t) => Settings.Current.Presence == "FrostPresence", RotationCombatUtil.FindMe),
+            new RotationStep(new RotationBuff(SpellIds.DeathKnight.UnholyPresence), 3f, (s, t) => Settings.Current.Presence == "UnholyPresence", RotationCombatUtil.FindMe),
+            new RotationStep(new RotationBuff(SpellIds.DeathKnight.HornOfWinter), 4f, (s,t) => !Me.IsMounted, RotationCombatUtil.FindMe),
+            new RotationStep(new RotationBuff(SpellIds.DeathKnight.BoneShield), 5f, (s,t) => !Me.IsMounted, RotationCombatUtil.FindMe)
         };
 
         public void Initialize() { }

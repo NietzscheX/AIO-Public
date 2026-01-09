@@ -17,7 +17,7 @@ namespace AIO.Combat.Mage
     internal class MageBehavior : BaseCombatClass
     {
         public override float Range => 29.0f;
-        private readonly Spell _waterElementalSpell = new Spell("Summon Water Elemental");
+        private readonly Spell _waterElementalSpell = new Spell(SpellManager.GetSpellInfo(SpellIds.Mage.SummonWaterElemental));
 
         internal MageBehavior() : base(
             Settings.Current,
@@ -37,7 +37,7 @@ namespace AIO.Combat.Mage
             Addons.Add(new CombatBuffs());
             if (Settings.Current.Backpaddle)
             {
-                Addons.Add(new AutoBackpedal(() => Target.GetDistance <= Settings.Current.BackpaddleRange && Target.HaveBuff("Frost Nova"), Settings.Current.BackpaddleRange));
+                Addons.Add(new AutoBackpedal(() => Target.GetDistance <= Settings.Current.BackpaddleRange && Target.HaveBuff(SpellIds.Mage.FrostNova), Settings.Current.BackpaddleRange));
             }
         }
 

@@ -11,7 +11,7 @@ namespace AIO.Combat.Druid
         public bool RunInCombat => true;
 
         public List<RotationStep> Rotation => new List<RotationStep> {
-            new RotationStep(new RotationBuff("Tree of Life"), 5f,(s,t) => !Me.IsMounted, RotationCombatUtil.FindMe),
+            new RotationStep(new RotationBuff(SpellIds.Druid.TreeOfLife), 5f,(s,t) => !Me.IsMounted, RotationCombatUtil.FindMe),
         };
 
         public void Initialize() { }

@@ -41,9 +41,9 @@ namespace AIO.Combat.Druid
             Addons.Add(new OOCBuffs());
             Addons.Add(new CombatBuffs());
             if (Settings.Current.ReviveAuto)
-                Addons.Add(new AutoPartyResurrect("Revive"));
+                Addons.Add(new AutoPartyResurrect(SpellManager.GetSpellInfo(SpellIds.Druid.Revive)));
             if (Settings.Current.RebirthAuto)
-                Addons.Add(new AutoPartyResurrect("Rebirth", true, false));
+                Addons.Add(new AutoPartyResurrect(SpellManager.GetSpellInfo(SpellIds.Druid.Rebirth), true, false));
             if (Settings.Current.HealOOC) 
                 Addons.Add(new HealOOC());
             if (Specialisation == Spec.Druid_GroupFeralTank) 
@@ -56,7 +56,7 @@ namespace AIO.Combat.Druid
             {
                 case Spec.Druid_SoloFeral:
                 case Spec.LowLevel:
-                    _defaultRange = (SpellManager.KnowSpell("Growl") || SpellManager.KnowSpell("Cat Form")) ? 5.0f : 29.0f;
+                    _defaultRange = (SpellManager.KnowSpell(SpellIds.Druid.Growl) || SpellManager.KnowSpell(SpellIds.Druid.CatForm)) ? 5.0f : 29.0f;
                     break;
                 case Spec.Druid_GroupFeralTank:
                 case Spec.Druid_GroupFeral:
@@ -79,10 +79,10 @@ namespace AIO.Combat.Druid
 
         private void OnFightStart(WoWUnit unit, CancelEventArgs cancelable)
         {
-            HealingTouchValue = RotationSpell.GetSpellCost("Healing Touch");
-            RejuvenationValue = RotationSpell.GetSpellCost("Rejuvenation");
-            RegrowthValue = RotationSpell.GetSpellCost("Regrowth");
-            TransformValue = RotationSpell.GetSpellCost("Bear Form");
+            HealingTouchValue = RotationSpell.GetSpellCost(SpellIds.Druid.HealingTouch);
+            RejuvenationValue = RotationSpell.GetSpellCost(SpellIds.Druid.Rejuvenation);
+            RegrowthValue = RotationSpell.GetSpellCost(SpellIds.Druid.Regrowth);
+            TransformValue = RotationSpell.GetSpellCost(SpellIds.Druid.BearForm);
         }
     }
 }

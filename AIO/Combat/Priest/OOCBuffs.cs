@@ -15,12 +15,12 @@ namespace AIO.Combat.Priest
 
         public List<RotationStep> Rotation => new List<RotationStep> {
             new RotationStep(new RotationAction("Candle Check", CandleCheck), 1500),
-            new RotationStep(new RotationBuff("Prayer of Fortitude"), 1f, (s,t) =>  !Me.IsMounted && _hasCandle && NeedsFort(t), RotationCombatUtil.FindPartyMember),
-            new RotationStep(new RotationBuff("Prayer of Spirit"), 2f, (s,t) =>  !Me.IsMounted && _hasCandle && NeedsSpirit(t), RotationCombatUtil.FindPartyMember),
-            new RotationStep(new RotationBuff("Prayer of Shadow Protection"), 3f, (s,t) =>  !Me.IsMounted && _hasCandle && NeedsShadow(t), RotationCombatUtil.FindPartyMember),
-            new RotationStep(new RotationBuff("Power Word: Fortitude"), 4f, (s,t) =>  !Me.IsMounted && NeedsFort(t), RotationCombatUtil.FindPartyMember),
-            new RotationStep(new RotationBuff("Divine Spirit"), 5f, (s,t) =>  !Me.IsMounted && NeedsSpirit(t), RotationCombatUtil.FindPartyMember),
-            new RotationStep(new RotationBuff("Shadow Protection"), 6f, (s,t) =>  !Me.IsMounted && NeedsShadow(t), RotationCombatUtil.FindPartyMember),
+            new RotationStep(new RotationBuff(SpellIds.Priest.PrayerOfFortitude), 1f, (s,t) =>  !Me.IsMounted && _hasCandle && NeedsFort(t), RotationCombatUtil.FindPartyMember),
+            new RotationStep(new RotationBuff(SpellIds.Priest.PrayerOfSpirit), 2f, (s,t) =>  !Me.IsMounted && _hasCandle && NeedsSpirit(t), RotationCombatUtil.FindPartyMember),
+            new RotationStep(new RotationBuff(SpellIds.Priest.PrayerOfShadowProtection), 3f, (s,t) =>  !Me.IsMounted && _hasCandle && NeedsShadow(t), RotationCombatUtil.FindPartyMember),
+            new RotationStep(new RotationBuff(SpellIds.Priest.PowerWordFortitude), 4f, (s,t) =>  !Me.IsMounted && NeedsFort(t), RotationCombatUtil.FindPartyMember),
+            new RotationStep(new RotationBuff(SpellIds.Priest.DivineSpirit), 5f, (s,t) =>  !Me.IsMounted && NeedsSpirit(t), RotationCombatUtil.FindPartyMember),
+            new RotationStep(new RotationBuff(SpellIds.Priest.ShadowProtection), 6f, (s,t) =>  !Me.IsMounted && NeedsShadow(t), RotationCombatUtil.FindPartyMember),
         };
 
         public void Initialize() { }
@@ -32,8 +32,8 @@ namespace AIO.Combat.Priest
             return false;
         }
 
-        private bool NeedsFort(WoWUnit target) => !target.HaveBuff("Power Word: Fortitude") && !target.HaveBuff("Prayer of Fortitude") && !target.HaveBuff("Holy Word: Fortitude");
-        private bool NeedsSpirit(WoWUnit target) => !target.HaveBuff("Divine Spirit") && !target.HaveBuff("Prayer of Spirit");
-        private bool NeedsShadow(WoWUnit target) => !target.HaveBuff("Shadow Protection") && !target.HaveBuff("Prayer of Shadow Protection");
+        private bool NeedsFort(WoWUnit target) => !target.HaveBuff(SpellIds.Priest.PowerWordFortitude) && !target.HaveBuff(SpellIds.Priest.PrayerOfFortitude);
+        private bool NeedsSpirit(WoWUnit target) => !target.HaveBuff(SpellIds.Priest.DivineSpirit) && !target.HaveBuff(SpellIds.Priest.PrayerOfSpirit);
+        private bool NeedsShadow(WoWUnit target) => !target.HaveBuff(SpellIds.Priest.ShadowProtection) && !target.HaveBuff(SpellIds.Priest.PrayerOfShadowProtection);
     }
 }

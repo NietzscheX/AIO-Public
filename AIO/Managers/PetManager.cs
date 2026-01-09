@@ -39,6 +39,11 @@ public static class PetManager
         }
     }
 
+    public static void CastPetSpellIfReady(int spellId, bool onFocus = false)
+    {
+        CastPetSpellIfReady(SpellManager.GetSpellInfo(spellId), onFocus);
+    }
+
     // Toggles Pet spell autocast (pass true as second argument to toggle on, or false to toggle off)
     public static void TogglePetSpellAuto(string spellName, bool toggle)
     {
@@ -71,6 +76,11 @@ public static class PetManager
         {
             Main.LogFight($"Toggled pet spell {spellName}");
         }
+    }
+
+    public static void TogglePetSpellAuto(int spellId, bool toggle)
+    {
+        TogglePetSpellAuto(SpellManager.GetSpellInfo(spellId), toggle);
     }
 
     public static void PreventPetDoubleSummon()

@@ -46,27 +46,34 @@ namespace AIO.Combat.Shaman
 
         public static bool ShouldRecall() => DistantPets.Any();
 
-        public static bool HasTemporary() => HasAny("Mana Tide Totem", "Earth Elemental Totem", "Tremor Totem", "Grounding Totem", "Earthbind Totem", "Stoneclaw Totem");
+        public static bool HasTemporary() => HasAny(
+            SpellManager.GetSpellInfo(SpellIds.Shaman.ManaTideTotem).Name,
+            SpellManager.GetSpellInfo(SpellIds.Shaman.EarthElementalTotem).Name,
+            SpellManager.GetSpellInfo(SpellIds.Shaman.TremorTotem).Name,
+            SpellManager.GetSpellInfo(SpellIds.Shaman.GroundingTotem).Name,
+            SpellManager.GetSpellInfo(SpellIds.Shaman.EarthbindTotem).Name,
+            SpellManager.GetSpellInfo(SpellIds.Shaman.StoneclawTotem).Name
+        );
 
         private void OnMovementPulse(List<Vector3> points, CancelEventArgs cancelable) => SetCall();
 
-        private static readonly Spell StoneskinTotem = new Spell("Stoneskin Totem");
-        private static readonly Spell StrengthOfEarthTotem = new Spell("Strength of Earth Totem");
-        private static readonly Spell TremorTotem = new Spell("Tremor Totem");
+        private static readonly Spell StoneskinTotem = new Spell(SpellIds.Shaman.StoneskinTotem);
+        private static readonly Spell StrengthOfEarthTotem = new Spell(SpellIds.Shaman.StrengthOfEarthTotem);
+        private static readonly Spell TremorTotem = new Spell(SpellIds.Shaman.TremorTotem);
 
-        private static readonly Spell MagmaTotem = new Spell("Magma Totem");
-        private static readonly Spell SearingTotem = new Spell("Searing Totem");
-        private static readonly Spell FlametongueTotem = new Spell("Flametongue Totem");
-        private static readonly Spell TotemOfWrath = new Spell("Totem of Wrath");
-        private static readonly Spell FrostResistanceTotem = new Spell("Frost Resistance Totem");
+        private static readonly Spell MagmaTotem = new Spell(SpellIds.Shaman.MagmaTotem);
+        private static readonly Spell SearingTotem = new Spell(SpellIds.Shaman.SearingTotem);
+        private static readonly Spell FlametongueTotem = new Spell(SpellIds.Shaman.FlametongueTotem);
+        private static readonly Spell TotemOfWrath = new Spell(SpellIds.Shaman.TotemOfWrath);
+        private static readonly Spell FrostResistanceTotem = new Spell(SpellIds.Shaman.FrostResistanceTotem);
 
-        private static readonly Spell WrathOfAirTotem = new Spell("Wrath of Air Totem");
-        private static readonly Spell WindfuryTotem = new Spell("Windfury Totem");
-        private static readonly Spell NatureResistanceTotem = new Spell("Nature Resistance Totem");
+        private static readonly Spell WrathOfAirTotem = new Spell(SpellIds.Shaman.WrathOfAirTotem);
+        private static readonly Spell WindfuryTotem = new Spell(SpellIds.Shaman.WindfuryTotem);
+        private static readonly Spell NatureResistanceTotem = new Spell(SpellIds.Shaman.NatureResistanceTotem);
 
-        private static readonly Spell ManaSpringTotem = new Spell("Mana Spring Totem");
-        private static readonly Spell HealingStreamTotem = new Spell("Healing Stream Totem");
-        private static readonly Spell CleansingTotem = new Spell("Cleansing Totem");
+        private static readonly Spell ManaSpringTotem = new Spell(SpellIds.Shaman.ManaSpringTotem);
+        private static readonly Spell HealingStreamTotem = new Spell(SpellIds.Shaman.HealingStreamTotem);
+        private static readonly Spell CleansingTotem = new Spell(SpellIds.Shaman.CleansingTotem);
 
         private readonly Dictionary<string, Spell> totems = new Dictionary<string, Spell> {
             {"Stoneskin Totem", StoneskinTotem},

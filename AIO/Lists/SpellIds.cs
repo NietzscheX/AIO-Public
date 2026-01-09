@@ -8,6 +8,7 @@ namespace AIO.Lists
             public const int DivinePlea = 54428;
             public const int HandOfFreedom = 1044;
             public const int DivineProtection = 498;
+            public const int DivineShield = 642;
             public const int SacredShield = 53601;
             public const int Purify = 1152;
             public const int FlashOfLight = 19750;
@@ -25,9 +26,38 @@ namespace AIO.Lists
             public const int Exorcism = 879;
             public const int HolyWrath = 2812;
             public const int TheArtOfWar = 53486; // Buff ID
-            public const int AutoAttack = 6603; // Auto Attack ID might vary or not work as Spell but standard "Auto Attack" string usually works manually. RotationSpell usually wraps a real spell. Auto Attack is a bit special.
-            // "Auto Attack" is usually just cast by name "Auto Attack" in English. In Chinese it is "自动攻击".
-            // Since it is special, we might need to check if 6603 works or if we need GetSpellInfo(6603).
+            public const int AutoAttack = 6603;
+            public const int LayOnHands = 633;
+            public const int BlessingOfSanctuary = 20911;
+            public const int BlessingOfWisdom = 19742;
+            public const int BlessingOfKings = 20217;
+            public const int BlessingOfMight = 19740;
+            public const int SealOfRighteousness = 21084;
+            public const int SealOfCommand = 20375;
+            public const int SealOfVengeance = 31801;
+            public const int SealOfJustice = 20164;
+            public const int SealOfWisdom = 20166;
+            public const int SealOfLight = 20165;
+            public const int RighteousFury = 25780;
+            public const int CrusaderAura = 32223;
+            public const int RetributionAura = 7294;
+            public const int DevotionAura = 465;
+            public const int ConcentrationAura = 19746;
+            public const int FireResistanceAura = 19891;
+            public const int ShadowResistanceAura = 19876;
+            public const int FrostResistanceAura = 19888;
+            public const int HolyShield = 20925;
+            public const int Cleanse = 4987;
+            public const int RighteousDefense = 31789;
+            public const int HandOfSalvation = 1038;
+            public const int HandOfProtection = 1022;
+            public const int ShieldOfRighteousness = 53600;
+            public const int HammerOfTheRighteous = 53595;
+            public const int DivineSacrifice = 64205;
+            public const int Forbearance = 25771;
+            public const int BeaconOfLight = 53563;
+            public const int HolyShock = 20473;
+            public const int Redemption = 7328;
         }
 
 
@@ -112,6 +142,8 @@ namespace AIO.Lists
             public const int SunderArmor = 7386;
             public const int BattleShout = 6673;
             public const int CommandingShout = 469;
+            public const int SwordAndBoard = 50227;
+            public const int GlyphOfRevenge = 58374;
         }
 
         public static class DeathKnight
@@ -145,6 +177,8 @@ namespace AIO.Lists
             public const int BloodTap = 45529;
             public const int MarkOfBlood = 49005;
             public const int DancingRuneWeapon = 49028;
+            public const int Gnaw = 47481;
+            public const int Leap = 47482;
         }
 
         public static class Druid
@@ -192,6 +226,10 @@ namespace AIO.Lists
             public const int Swiftmend = 18562;
             public const int TreeOfLife = 33891;
             public const int NaturesGrasp = 16689;
+            public const int Revive = 50769;
+            public const int Rebirth = 20484;
+            public const int CatForm = 768;
+            public const int BearForm = 9634;
         }
 
         public static class Hunter
@@ -221,6 +259,20 @@ namespace AIO.Lists
             public const int Misdirection = 34477;
             public const int BestialWrath = 19574;
             public const int RapidFire = 3045;
+            public const int AutoShoot = 75;
+            public const int FeedPet = 6991;
+            public const int AspectOfTheViper = 34074;
+            public const int AspectOfTheDragonhawk = 61846;
+            public const int AspectOfTheHawk = 13165;
+            public const int AspectOfTheMonkey = 13163;
+            public const int TrueshotAura = 19506;
+            public const int MendPet = 136;
+            public const int RevivePet = 982;
+            public const int CallPet = 883;
+            public const int AspectOfThePack = 13159;
+            public const int PetGrowl = 2649;
+            public const int PetCower = 1742;
+            public const int PetBite = 17253;
         }
 
         public static class Mage
@@ -246,18 +298,40 @@ namespace AIO.Lists
             public const int Blizzard = 10;
             public const int FrostfireBolt = 44614;
             public const int Evocation = 12051;
-            public const int SummonWaterElemental = 31687;
-            public const int DeepFreeze = 44572;
             public const int IceLance = 30455;
+            public const int DeepFreeze = 44572;
+            public const int SummonWaterElemental = 31687;
+            public const int Invisibility = 66;
+            public const int Slow = 31589;
+            public const int FocusMagic = 54646;
+            public const int MoltenArmor = 30482;
+            public const int MageArmor = 6117;
+            public const int IceArmor = 7302;
+            public const int FrostArmor = 168;
+            public const int Combustion = 11129;
+            public const int Flamestrike = 2120;
             public const int Pyroblast = 11366;
             public const int LivingBomb = 44457;
-            public const int Flamestrike = 2120;
             public const int Scorch = 2948;
-            public const int Combustion = 11129;
             public const int BlastWave = 11113;
             public const int DragonsBreath = 31661;
-            public const int Invisibility = 66;
+            public const int DampenMagic = 604;
+            public const int AmplifyMagic = 1008;
+            public const int ArcaneIntellect = 1459;
+            public const int DalaranIntellect = 61024;
+            public const int ArcaneBrilliance = 23028;
+            public const int DalaranBrilliance = 61316;
+            public const int Blink = 1953;
+            public const int FrostWard = 6143;
+            public const int FireWard = 543;
+            public const int RemoveCurse = 475;
+            public const int SlowFall = 130;
+            public const int Spellsteal = 30449;
             public const int IceBarrier = 11426;
+            public const int ConjureWater = 5504; // Rank 1
+            public const int ConjureFood = 587; // Rank 1 
+            public const int ConjureManaGem = 759; // Rank 1
+            public const int ConjureRefreshment = 42955; // Rank 1
         }
 
         public static class Priest
@@ -293,6 +367,27 @@ namespace AIO.Lists
             public const int DivineHymn = 64843;
             public const int HymnOfHope = 64901;
             public const int PainSuppression = 33206;
+            public const int PowerWordFortitude = 1243;
+            public const int PrayerOfFortitude = 21562;
+            public const int DivineSpirit = 14752;
+            public const int PrayerOfSpirit = 27681;
+            public const int ShadowProtection = 976;
+            public const int PrayerOfShadowProtection = 27683;
+            public const int InnerFire = 588;
+            public const int Resurrection = 2006;
+            public const int Fade = 586;
+            public const int ShackleUndead = 9484;
+            public const int MassDispel = 32375;
+            public const int FearWard = 6346;
+            public const int WeakenedSoul = 6788;
+            public const int GreaterHeal = 2060;
+            public const int Heal = 2054;
+            public const int ShadowWeaving = 15258;
+            public const int SpiritOfRedemption = 27827;
+            public const int MindSoothe = 453;
+            public const int Serendipity = 63731;
+            public const int BindingHeal = 32546;
+            public const int SurgeOfLight = 33151;
         }
 
         public static class Shaman
@@ -321,6 +416,28 @@ namespace AIO.Lists
             public const int Heroism = 32182;
             public const int Thunderstorm = 51490;
             public const int Hex = 51514;
+            public const int GhostWolf = 2645;
+            public const int TotemicRecall = 36936;
+            public const int AncestralSpirit = 2008;
+            public const int StoneskinTotem = 8071;
+            public const int StrengthOfEarthTotem = 8075;
+            public const int TremorTotem = 8143;
+            public const int MagmaTotem = 8190;
+            public const int SearingTotem = 3599;
+            public const int FlametongueTotem = 8227;
+            public const int TotemOfWrath = 30706;
+            public const int FrostResistanceTotem = 8181;
+            public const int WrathOfAirTotem = 3738;
+            public const int WindfuryTotem = 8512;
+            public const int NatureResistanceTotem = 10595;
+            public const int ManaSpringTotem = 5675;
+            public const int HealingStreamTotem = 5394;
+            public const int CleansingTotem = 8170;
+            public const int ManaTideTotem = 16190;
+            public const int EarthElementalTotem = 2062;
+            public const int GroundingTotem = 8177;
+            public const int EarthbindTotem = 2484;
+            public const int StoneclawTotem = 5730;
         }
 
         public static class Warlock
@@ -353,6 +470,9 @@ namespace AIO.Lists
             public const int SoulShatter = 29858;
             public const int Hellfire = 1949;
             public const int SoulFire = 6353;
+            public const int FelIntelligence = 57567;
+            public const int ShadowFlame = 47897;
+            public const int Torment = 3716;
         }
     }
 }

@@ -1,6 +1,8 @@
 ﻿using robotManager.Helpful;
 using System.Collections.Generic;
 using wManager.Wow.Helpers;
+using AIO.Lists;
+using wManager.Wow.Class;
 
 namespace AIO.Combat.Hunter
 {
@@ -95,7 +97,7 @@ namespace AIO.Combat.Hunter
                         continue;
                     }
 
-                    Lua.LuaDoString("CastSpellByName('Feed Pet')", false);
+                    Lua.LuaDoString($"CastSpellByName('{SpellManager.GetSpellInfo(SpellIds.Hunter.FeedPet)}')", false);
                     Lua.LuaDoString($"UseItemByName('{ food }')", false);
                     Logging.WriteFight($"[RTF] Feeding hungry Pet");
                     return;

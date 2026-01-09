@@ -64,7 +64,7 @@ namespace AIO.Combat.Warlock
             Addons.Add(new Racials());
             Addons.Add(new OOCBuffs());
             Addons.Add(new PetHandler());
-            Addons.Add(new PetAutoTarget("Torment"));
+            Addons.Add(new PetAutoTarget(SpellManager.GetSpellInfo(SpellIds.Warlock.Torment).Name));
             if (Specialisation == Spec.Warlock_GroupAffliction)
                 _range = 25f;
         }

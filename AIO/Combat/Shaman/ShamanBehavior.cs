@@ -22,8 +22,8 @@ namespace AIO.Combat.Shaman
     {
         private float CombatRange;
         public override float Range => CombatRange;
-        private readonly Spell _ghostWolfSpell = new Spell("Ghost Wolf");
-        private readonly Spell _totemRecallSpell = new Spell("Totemic Recall");
+        private readonly Spell _ghostWolfSpell = new Spell(SpellIds.Shaman.GhostWolf);
+        private readonly Spell _totemRecallSpell = new Spell(SpellIds.Shaman.TotemicRecall);
         private void SetDefaultRange() => CombatRange = 5.0f;
         private void SetRange(float range) => CombatRange = range;
 
@@ -43,7 +43,7 @@ namespace AIO.Combat.Shaman
             if (Settings.Current.HealOOC)
                 Addons.Add(new HealOOC());
             Totems totemsAddon = new Totems(this);
-            Addons.Add(new AutoPartyResurrect("Ancestral Spirit"));
+            Addons.Add(new AutoPartyResurrect(SpellManager.GetSpellInfo(SpellIds.Shaman.AncestralSpirit)));
             Addons.Add(totemsAddon);
             Addons.Add(new CombatBuffs(this, totemsAddon));
             if (Specialisation == Spec.Shaman_SoloEnhancement)
@@ -109,16 +109,17 @@ namespace AIO.Combat.Shaman
                 return;
             }
             if (!new Regeneration().NeedToRun &&
-                Totems.HasAny("Stoneskin Totem",
-                "Strength of Earth Totem",
-                "Magma Totem",
-                "Searing Totem",
-                "Flametongue Totem",
-                "Totem of Wrath",
-                "Wrath of Air Totem",
-                "Windfury Totem",
-                "Mana Spring Totem",
-                "Healing Stream Totem") &&
+            if (!new Regeneration().NeedToRun &&
+                Totems.HasAny(SpellManager.GetSpellInfo(SpellIds.Shaman.StoneskinTotem).Name,
+                SpellManager.GetSpellInfo(SpellIds.Shaman.StrengthOfEarthTotem).Name,
+                SpellManager.GetSpellInfo(SpellIds.Shaman.MagmaTotem).Name,
+                SpellManager.GetSpellInfo(SpellIds.Shaman.SearingTotem).Name,
+                SpellManager.GetSpellInfo(SpellIds.Shaman.FlametongueTotem).Name,
+                SpellManager.GetSpellInfo(SpellIds.Shaman.TotemOfWrath).Name,
+                SpellManager.GetSpellInfo(SpellIds.Shaman.WrathOfAirTotem).Name,
+                SpellManager.GetSpellInfo(SpellIds.Shaman.WindfuryTotem).Name,
+                SpellManager.GetSpellInfo(SpellIds.Shaman.ManaSpringTotem).Name,
+                SpellManager.GetSpellInfo(SpellIds.Shaman.HealingStreamTotem).Name) &&
                 !Me.InCombatFlagOnly)
             {
                 _totemRecallSpell.Launch();
@@ -135,7 +136,7 @@ namespace AIO.Combat.Shaman
 
             if (string.IsNullOrWhiteSpace(wManagerSetting.CurrentSetting.GroundMountName) &&
                 !new Regeneration().NeedToRun &&
-                !Me.HaveMyBuff("Ghost Wolf") &&
+                !Me.HaveMyBuff(SpellIds.Shaman.GhostWolf) &&
                 Settings.Current.UseGhostWolf &&
                 Me.IsAlive &&
                 _ghostWolfSpell.KnownSpell &&

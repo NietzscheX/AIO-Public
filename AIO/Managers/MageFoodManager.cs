@@ -2,14 +2,15 @@
 using wManager.Wow.Class;
 using wManager.Wow.Helpers;
 using wManager.Wow.ObjectManager;
+using AIO.Lists;
 
 public static class MageFoodManager
 {
     private static List<WoWItem> _bagItems;
-    private static Spell ConjureWater = new Spell("Conjure Water");
-    private static Spell ConjureFood = new Spell("Conjure Food");
-    private static Spell ConjureManaGem = new Spell("Conjure Mana Gem");
-    private static Spell ConjureRefreshement = new Spell("Conjure Refreshment");
+    private static Spell ConjureWater = new Spell(SpellManager.GetSpellInfo(SpellIds.Mage.ConjureWater));
+    private static Spell ConjureFood = new Spell(SpellManager.GetSpellInfo(SpellIds.Mage.ConjureFood));
+    private static Spell ConjureManaGem = new Spell(SpellManager.GetSpellInfo(SpellIds.Mage.ConjureManaGem));
+    private static Spell ConjureRefreshement = new Spell(SpellManager.GetSpellInfo(SpellIds.Mage.ConjureRefreshment));
     public static string ManaStone = "";
 
     private static List<string> Drink()

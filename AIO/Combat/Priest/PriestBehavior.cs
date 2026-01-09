@@ -24,7 +24,7 @@ namespace AIO.Combat.Priest
             })
         {
             Addons.Add(new Racials());
-            Addons.Add(new AutoPartyResurrect("Resurrection"));
+            Addons.Add(new AutoPartyResurrect(SpellManager.GetSpellInfo(SpellIds.Priest.Resurrection)));
             Addons.Add(new OOCBuffs());
             Addons.Add(new CombatBuffs());
 

@@ -17,7 +17,7 @@ namespace AIO.Combat.DeathKnight
     internal class DeathKnightBehavior : BaseCombatClass
     {
         public override float Range => 5.0f;
-        private readonly Spell _raiseDeadSpell = new Spell("Raise Dead");
+        private readonly Spell _raiseDeadSpell = new Spell(SpellIds.DeathKnight.RaiseDead);
 
         internal DeathKnightBehavior() : base(
             Settings.Current,
@@ -74,11 +74,11 @@ namespace AIO.Combat.DeathKnight
                 {
                     if (Target.IsCast && Pet.Position.DistanceTo(Target.Position) <= 6)
                     {
-                        PetManager.CastPetSpellIfReady("Gnaw");
+                        PetManager.CastPetSpellIfReady(SpellIds.DeathKnight.Gnaw);
                     }
                     if (Pet.Position.DistanceTo(Target.Position) >= 7)
                     {
-                        PetManager.CastPetSpellIfReady("Leap");
+                        PetManager.CastPetSpellIfReady(SpellIds.DeathKnight.Leap);
                     }
                 }
             }

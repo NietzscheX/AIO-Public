@@ -13,7 +13,7 @@ namespace AIO.Combat.Paladin
 
     internal class PaladinBehavior : BaseCombatClass
     {
-        private static readonly string _crusaderAuraName = "Crusader Aura";
+        private static readonly string _crusaderAuraName = SpellManager.GetSpellInfo(SpellIds.Paladin.CrusaderAura);
         private float CombatRange;
         private float DefaultRange;
         public override float Range => CombatRange;
@@ -35,7 +35,7 @@ namespace AIO.Combat.Paladin
         {
             Addons.Add(new Racials());
             if (Settings.Current.Resurrect)
-                Addons.Add(new AutoPartyResurrect("Redemption"));
+                Addons.Add(new AutoPartyResurrect(SpellManager.GetSpellInfo(SpellIds.Paladin.Redemption)));
             if (Settings.Current.HealOOC)
                 Addons.Add(new HealOOC(Settings.Current));
             if (Settings.Current.Buffing)

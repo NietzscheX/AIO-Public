@@ -21,8 +21,8 @@ namespace AIO.Combat.Hunter
     {
         public override float Range => Settings.Current.CombatRange;
         private readonly Timer _petFeedTimer = new Timer(1000 * 5);
-        private readonly Spell _revivePetSpell = new Spell("Revive Pet");
-        private readonly Spell _callPetSpell = new Spell("Call Pet");
+        private readonly Spell _revivePetSpell = new Spell(SpellIds.Hunter.RevivePet);
+        private readonly Spell _callPetSpell = new Spell(SpellIds.Hunter.CallPet);
         private readonly Timer _petCastTimer = new Timer(300);
 
         internal HunterBehavior() : base(
@@ -40,7 +40,7 @@ namespace AIO.Combat.Hunter
             Addons.Add(new Racials());
             Addons.Add(new OOCBuffs());
             Addons.Add(new CombatBuffs());
-            Addons.Add(new PetAutoTarget("Growl"));
+            Addons.Add(new PetAutoTarget(SpellManager.GetSpellInfo(SpellIds.Hunter.PetGrowl)));
             if (Settings.Current.Backpaddle)
             {
                 Addons.Add(new AutoBackpedal(
@@ -116,12 +116,12 @@ namespace AIO.Combat.Hunter
             _petCastTimer.Reset();
 
             if (ObjectManager.Pet.HealthPercent <= 40)
-                PetManager.CastPetSpellIfReady("Cower");
+                PetManager.CastPetSpellIfReady(SpellIds.Hunter.PetCower);
 
             if (ObjectManager.Pet.Focus >= 50
                 && ObjectManager.Pet.Position.DistanceTo(ObjectManager.Pet.TargetObject.Position) <= 7)
             {
-                PetManager.CastPetSpellIfReady("Bite");
+                PetManager.CastPetSpellIfReady(SpellIds.Hunter.PetBite);
             }
 
             RefreshPet();

@@ -26,13 +26,13 @@ namespace AIO.Combat.Paladin
         private readonly int MAX_CACHE_AGE = 5000;
         private readonly Dictionary<string, string> PlayerBuff = new Dictionary<string, string>();
 
-        private static readonly string Sanctuary = "Blessing of Sanctuary";
-        private static readonly string Wisdom = "Blessing of Wisdom";
-        private static readonly string Kings = "Blessing of Kings";
-        private static readonly string Might = "Blessing of Might";
-        private static readonly string ManaSpring = "Mana Spring Totem";
-        private static readonly string ManaSpring2 = "Mana Spring";
-        private static readonly string BattleShout = "Battle Shout";
+        private static readonly string Sanctuary = SpellManager.GetSpellInfo(SpellIds.Paladin.BlessingOfSanctuary);
+        private static readonly string Wisdom = SpellManager.GetSpellInfo(SpellIds.Paladin.BlessingOfWisdom);
+        private static readonly string Kings = SpellManager.GetSpellInfo(SpellIds.Paladin.BlessingOfKings);
+        private static readonly string Might = SpellManager.GetSpellInfo(SpellIds.Paladin.BlessingOfMight);
+        private static readonly string ManaSpring = SpellManager.GetSpellInfo(5675); // Mana Spring Totem
+        private static readonly string ManaSpring2 = "Mana Spring"; // Keep string if unsure of ID or if it varies, but ideally ID. 5675 is Rank 1.
+        private static readonly string BattleShout = SpellManager.GetSpellInfo(SpellIds.Warrior.BattleShout);
 
         private bool KnowSanctuary = SpellManager.KnowSpell(Sanctuary);
         private bool KnowKings = SpellManager.KnowSpell(Kings);

@@ -7,6 +7,7 @@ using System.Linq;
 using wManager.Wow.Enums;
 using wManager.Wow.ObjectManager;
 using static AIO.Constants;
+using AIO.Lists;
 
 namespace AIO.Combat.Mage
 {
@@ -27,9 +28,9 @@ namespace AIO.Combat.Mage
 
         public List<RotationStep> Rotation => new List<RotationStep> {
             new RotationStep(new RotationAction("Reset cache", DoPreCalculations), 0f, 500),
-            new RotationStep(new RotationBuff("Arcane Intellect"), 5f, (s,t) => !Me.IsMounted && !t.CHaveBuff("Fel Intelligence") && !t.CHaveBuff("Arcane Brilliance"), RotationCombatUtil.FindPartyMember),
-            new RotationStep(new RotationBuff("Arcane Intellect"), 6f, (s,t) => !Me.IsMounted && !t.CHaveBuff("Fel Intelligence") && !t.CHaveBuff("Arcane Brilliance"), RotationCombatUtil.FindMe),
-            new RotationStep(new RotationBuff("Focus Magic"), 7f, (s,t) => !Me.IsMounted, FindPartyMemberForFocusMagic),
+            new RotationStep(new RotationBuff(SpellIds.Mage.ArcaneIntellect), 5f, (s,t) => !Me.IsMounted && !t.CHaveBuff(SpellIds.Warlock.FelIntelligence) && !t.CHaveBuff(SpellIds.Mage.ArcaneBrilliance), RotationCombatUtil.FindPartyMember),
+            new RotationStep(new RotationBuff(SpellIds.Mage.ArcaneIntellect), 6f, (s,t) => !Me.IsMounted && !t.CHaveBuff(SpellIds.Warlock.FelIntelligence) && !t.CHaveBuff(SpellIds.Mage.ArcaneBrilliance), RotationCombatUtil.FindMe),
+            new RotationStep(new RotationBuff(SpellIds.Mage.FocusMagic), 7f, (s,t) => !Me.IsMounted, FindPartyMemberForFocusMagic),
         };
 
         private bool DoPreCalculations()
@@ -40,7 +41,7 @@ namespace AIO.Combat.Mage
 
         private WoWPlayer FindPartyMemberForFocusMagic(Func<WoWUnit, bool> predicate)
         {
-            if (RotationFramework.PartyMembers.Any(m => m.CHaveMyBuff("Focus Magic")))
+            if (RotationFramework.PartyMembers.Any(m => m.CHaveMyBuff(SpellIds.Mage.FocusMagic)))
                 return null;
 
             WoWPlayer player = RotationFramework.PartyMembers
